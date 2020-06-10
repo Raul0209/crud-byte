@@ -1,0 +1,76 @@
+<div class="colorFondo">
+    <mat-toolbar color="primary">
+        <span>CRUD Byte</span>
+    </mat-toolbar>
+
+
+    <div class="margenes">
+
+        <div class="botoncito">
+            <button (click)='openModalNew()' mat-raised-button color="primary">Nueva Persona
+
+                <span class="material-icons">
+                    add
+                    </span>
+
+            </button>
+
+        </div>
+
+        <mat-form-field class="selector">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder='Buscador' [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''" (click)="applyFilter(value)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- DPI Column -->
+            <ng-container matColumnDef="dpi">
+                <th mat-header-cell *matHeaderCellDef> DPI </th>
+                <td mat-cell *matCellDef="let element"> {{element.dpi}} </td>
+            </ng-container>
+
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Apellido Column -->
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+
+            <!-- Fecha Nacimiento Column -->
+            <ng-container matColumnDef="birthDate">
+                <th mat-header-cell *matHeaderCellDef> Fecha de nacimiento </th>
+                <td mat-cell *matCellDef="let element"> {{element.formatDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
+                <td mat-cell *matCellDef="let element"> <span (click)='openModalEdit(element._id)' class="material-icons cursor">
+                    edit
+                    </span> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let element"> <span (click)='deletePerson(element._id)' class="material-icons cursor">
+                    delete
+                    </span> </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+    </div>

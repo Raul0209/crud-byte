@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Editando Persona</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div class="example-container">
+
+        <mat-form-field>
+            <mat-label>DPI</mat-label>
+            <input [(ngModel)]='data.dpi' matInput type="text">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        </mat-form-field>
+
+
+
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input [(ngModel)]='data.name' matInput type="text">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input [(ngModel)]='data.lastName' matInput type="text">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        </mat-form-field>
+
+
+
+        <mat-form-field>
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input [(ngModel)]='data.birthDate' matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button (click)='saveUpdatePerson()' mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>
